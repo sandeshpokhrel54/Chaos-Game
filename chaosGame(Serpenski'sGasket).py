@@ -2,15 +2,12 @@ import matplotlib.pyplot as plt
 import random
 from matplotlib.animation import FuncAnimation
 
-
 plt.plot([0,1,2,0],[0,1,0,0])
 mx = 1.0
 my = 0.5
 
-
 def animate(i):
-
-    
+   
     a = random.randint(1,3)
     global mx
     global my
@@ -34,8 +31,5 @@ def animate(i):
     plt.plot(mx,my,'go')
     print(i)
     
-
 ani = FuncAnimation(plt.gcf(),animate,interval = 10)  #how often you want the function to be called interval in milliseconds
 plt.show()
-
-
