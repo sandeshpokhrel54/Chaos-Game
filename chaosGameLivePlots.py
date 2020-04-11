@@ -3,10 +3,10 @@ import random
 from matplotlib.animation import FuncAnimation
 
 
-n = int(input('Enter number of sides of the shape you want to create a gasket for i.e. 3 or 4 :'))
+n = int(input('Enter number of sides of the polygon  i.e. 3,4 and 5 : '))
 
 if (n == 3): 
-    plt.plot([0,1,2,0],[0,1,0,0])
+    plt.plot([0,1,2,0],[0,1,0,0])  #initial triangle
     plt.title("Serpenski's Gasket")
     mx = 1.0
     my = 0.5
@@ -43,77 +43,113 @@ if (n == 3):
 
 elif (n==4):
 
-    plt.plot([0,0,1,1,0],[0,1,1,0,0])
+    plt.plot([0,0,1,1,0],[0,1,1,0,0]) #initial square
     plt.title("Chaos game with square")
     mx = 0.5
     my = 0.5
-    bouncer1 = True
-    bouncer2 = True
-    bouncer3 = True
-    bouncer4 = True
+    ran = 5
 
     def animate(i):
         
         a = random.randint(1,4)
         global mx
         global my
-        global bouncer1
-        global bouncer2
-        global bouncer3
-        global bouncer4
 
+        global ran
 
-        if (a== 1 and bouncer1):
+        if (a== 1 and ran != a):
             
             nmx = (mx+0)/2
             nmy = (my+0)/2 
             mx = nmx
             my = nmy
-            bouncer1 = False
-            bouncer2 = True
-            bouncer3 = True
-            bouncer4 = True
+            ran = a
             
-           
-
-        elif (a== 2 and bouncer2):
+        elif (a== 2 and ran !=a):
             nmx = (mx+1)/2
             nmy = (my+0)/2 
             mx = nmx
             my = nmy
-            bouncer1 = True
-            bouncer2 = False
-            bouncer3 = True
-            bouncer4 = True
-            
-              
-        elif (a== 3 and bouncer3):
+            ran = a 
+                        
+        elif (a== 3 and ran !=a):
             nmx = (mx+1)/2
             nmy = (my+1)/2 
             mx = nmx
             my = nmy
-            bouncer1 = True
-            bouncer2 = True
-            bouncer3 = False
-            bouncer4 = True
-            
-        
-        elif (a== 4 and bouncer4):
+            ran = a
+ 
+        elif (a== 4 and ran != a):
             nmx = (mx+0)/2
             nmy = (my+1)/2 
             mx = nmx
             my = nmy
-            bouncer1 = True
-            bouncer2 = True
-            bouncer3 = True
-            bouncer4 = False
-           
-
+            ran = a
+            
         print(i) 
         plt.plot(mx,my,'go',markersize = 0.4)
 
+
+elif( n == 5):
+    
+    plt.plot([0,-0.61,-0.5,0.5,0.61,0],[1.22,0.61,0,0,0.61,1.22]) # surrounding pentagon
+    plt.title("Chaos game with pentagon")
+    mx = 0.5
+    my = 0.5
+    ran = 6
+
+    def animate(i):
+        
+        a = random.randint(1,5)
+        global mx
+        global my
+
+        global ran
+
+        if (a== 1 and ran != a):
+            
+            nmx = (mx+0)/2
+            nmy = (my+1.22)/2 
+            mx = nmx
+            my = nmy
+            ran = a
+            
+        elif (a== 2 and ran !=a):
+            nmx = (mx-0.61)/2
+            nmy = (my+0.61)/2 
+            mx = nmx
+            my = nmy
+            ran = a 
+                        
+        elif (a== 3 and ran !=a):
+            nmx = (mx-0.5)/2
+            nmy = (my+0)/2 
+            mx = nmx
+            my = nmy
+            ran = a
+ 
+        elif (a== 4 and ran != a):
+            nmx = (mx+0.5)/2
+            nmy = (my+0)/2 
+            mx = nmx
+            my = nmy
+            ran = a
+        
+        elif(a==5 and ran!= a):
+            nmx = (mx+0.61)/2
+            nmy = (my+0.61)/2 
+            mx = nmx
+            my = nmy
+            ran = a
+
+            
+        print(i) 
+        plt.plot(mx,my,'go',markersize = 0.4)
+
+
 else:
-    print('PICK 3 or 4')
+    print('PICK 3,4 or 5')
 
 ani = FuncAnimation(plt.gcf(),animate,interval = 0.0001)
 plt.show()
+
